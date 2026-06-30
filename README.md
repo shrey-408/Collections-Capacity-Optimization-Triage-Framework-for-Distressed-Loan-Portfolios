@@ -40,7 +40,25 @@ A three-page Streamlit application translates the analysis into a usable interfa
 ## Data
 
 Built on Home Credit's loan performance data from kaggle (`POS_CASH_balance.csv`, `application_train.csv`) — 337,252 unique accounts, 10M+ monthly balance records. No synthetic data. The only constructed element is the intervention-priority threshold logic, which is a deliberate business design decision, not a data limitation: the HIGH priority threshold is set above 65% (not 50%) because in collections, missing a genuine NPA is more costly than an unnecessary call to a self-curing account.
+## Setup & Running
 
+1. Clone the repo and install dependencies:
+```bash
+   pip install -r requirements.txt
+```
+
+2. Download the dataset from [Kaggle: Home Credit Default Risk](https://www.kaggle.com/c/home-credit-default-risk/data) and place `POS_CASH_balance.csv` and `application_train.csv` in the `data/` folder.
+
+3. Run the notebook end to end to generate the model:
+```bash
+   jupyter notebook notebooks/analysis.ipynb
+```
+   This builds `model/triage_model.pkl` and `model/dashboard_stats.pkl`, which the app depends on.
+
+4. Launch the app:
+```bash
+   streamlit run app.py
+```
 ## Tech Stack
 
 - **Python** — pandas, numpy for data pipeline
