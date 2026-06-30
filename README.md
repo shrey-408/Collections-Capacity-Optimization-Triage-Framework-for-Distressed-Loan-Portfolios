@@ -39,12 +39,23 @@ A three-page Streamlit application translates the analysis into a usable interfa
 
 ## Data
 
-Built on Home Credit's loan performance data (`POS_CASH_balance.csv`, `application_train.csv`) — 337,252 unique accounts, 10M+ monthly balance records. No synthetic data. The only constructed element is the intervention-priority threshold logic, which is a deliberate business design decision, not a data limitation: the HIGH priority threshold is set above 65% (not 50%) because in collections, missing a genuine NPA is more costly than an unnecessary call to a self-curing account.
+Built on Home Credit's loan performance data from kaggle (`POS_CASH_balance.csv`, `application_train.csv`) — 337,252 unique accounts, 10M+ monthly balance records. No synthetic data. The only constructed element is the intervention-priority threshold logic, which is a deliberate business design decision, not a data limitation: the HIGH priority threshold is set above 65% (not 50%) because in collections, missing a genuine NPA is more costly than an unnecessary call to a self-curing account.
 
 ## Tech Stack
 
 - **Python** — pandas, numpy for data pipeline
 - **scikit-learn** — Random Forest classifier
 - **Streamlit** — interactive triage interface
+
+## Limitations
+
+- The dataset has no agent or operations-layer data — this project models *which* accounts need intervention, not *who* should handle them or *how*. That is intentionally left to operational layers a collections team would already have.
+- ROC-AUC of 0.705 reflects real-world data with overlapping borrower profiles between segments — it is not a tuned production model, and is presented as a defensible first-pass triage signal rather than a finished scoring engine.
+- 13% of delinquent accounts could not be matched to a borrower profile and were excluded from the modeling step.
+
+## Author
+
+Shreyas Shinde
+
 
 ## Project Structure
