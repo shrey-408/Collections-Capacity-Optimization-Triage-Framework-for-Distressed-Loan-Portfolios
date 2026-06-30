@@ -13,12 +13,12 @@ st.set_page_config(
 # ── Load model and stats ──────────────────────────────────────
 @st.cache_resource
 def load_model():
-    with open('model/triage_model.pkl', 'rb') as f:
+    with open('triage_model.pkl', 'rb') as f:
         return pickle.load(f)
 
 @st.cache_resource
 def load_stats():
-    with open('model/dashboard_stats.pkl', 'rb') as f:
+    with open('dashboard_stats.pkl', 'rb') as f:
         return pickle.load(f)
 
 model_package = load_model()
